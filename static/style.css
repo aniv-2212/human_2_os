@@ -1,0 +1,345 @@
+:root {
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #111111;
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --accent-primary: #00ffcc;
+    --accent-secondary: #0088ff;
+    --alert-color: #ff3366;
+    --card-bg: #1a1a1a;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+.header {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 20px;
+}
+
+h1 {
+    color: var(--accent-primary);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid #333;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.card h2 {
+    color: var(--accent-secondary);
+    margin-top: 0;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.metric-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.skill-bar {
+    margin-bottom: 15px;
+}
+
+.skill-name {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.progress {
+    background-color: #333;
+    height: 6px;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    background-color: var(--accent-primary);
+    height: 100%;
+    transition: width 1s ease-in-out;
+}
+
+.tag {
+    display: inline-block;
+    background-color: rgba(0, 255, 204, 0.1);
+    color: var(--accent-primary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border: 1px solid rgba(0, 255, 204, 0.2);
+}
+
+.suggestion-item {
+    background-color: rgba(255, 255, 255, 0.03);
+    padding: 10px;
+    border-left: 3px solid var(--accent-secondary);
+    margin-bottom: 10px;
+}
+
+.suggestion-text {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.reasoning {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.bio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    text-align: center;
+}
+
+.bio-item {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.bio-item h3 {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.bio-val {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent-primary);
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.simulation-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.path-box {
+    background-color: rgba(255, 255, 255, 0.02);
+    padding: 15px;
+    border: 1px solid #333;
+    border-radius: 4px;
+}
+
+.path-box.winner {
+    border-color: var(--accent-primary);
+    background-color: rgba(0, 255, 204, 0.05);
+}
+
+.path-box h3 {
+    margin-top: 0;
+    font-size: 1rem;
+}
+
+/* Chat Interface Styles */
+.chat-window {
+    height: 300px;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid #333;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    padding: 10px 15px;
+    border-radius: 4px;
+    max-width: 80%;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.user-msg {
+    align-self: flex-end;
+    background-color: rgba(0, 255, 204, 0.1);
+    border: 1px solid var(--accent-primary);
+    color: var(--text-primary);
+}
+
+.system-msg {
+    align-self: flex-start;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid #444;
+    color: var(--text-secondary);
+}
+
+.chat-input-area {
+    display: flex;
+    gap: 10px;
+}
+
+#chat-input {
+    flex-grow: 1;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid #333;
+    color: var(--text-primary);
+    padding: 10px;
+    border-radius: 4px;
+}
+
+#chat-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+}
+
+.btn-send {
+    background: var(--accent-primary);
+    color: #000;
+    border: none;
+    padding: 0 20px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.btn-send:hover {
+    box-shadow: 0 0 10px var(--accent-primary);
+}
+
+/* Setup Form Styles */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-secondary);
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    background: #222;
+    border: 1px solid #333;
+    color: var(--text-primary);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+}
+
+input[type="range"] {
+    width: 100%;
+    margin-top: 5px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.btn-primary {
+    background-color: var(--accent-primary);
+    color: #000;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 0 15px var(--accent-primary);
+    transform: translateY(-2px);
+}
+
+.btn-reset {
+    background-color: transparent;
+    border: 1px solid var(--alert-color);
+    color: var(--alert-color);
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.8rem;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.btn-reset:hover {
+    background-color: var(--alert-color);
+    color: #000;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .path-box {
+        width: 100%;
+    }
+    
+    .header h1 {
+        font-size: 1.5rem;
+    }
+}

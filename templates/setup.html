@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human OS v2.0.27 - Neural Initialization</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container" style="max-width: 800px;">
+    <div class="header">
+        <h1>Human OS v2.0.27</h1>
+        <div class="subtitle">Neural Initialization Protocol | New User Sequence</div>
+    </div>
+
+    <div class="card full-width">
+        <h2><span style="color: var(--accent-secondary)">>></span> Initialize Digital Twin</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 20px;">
+            Please input your core biometric and neural parameters to train the AI model. 
+            This data will calibrate the Insight and Prediction Engines.
+        </p>
+
+        <form action="/setup" method="POST">
+            <!-- Identity -->
+            <div class="form-group">
+                <label for="name">Subject Identity (Name)</label>
+                <input type="text" id="name" name="name" required placeholder="e.g. Alex Chen" autocomplete="off">
+            </div>
+
+            <!-- Neural Architecture (Skills) -->
+            <h3 style="margin-top: 30px; border-bottom: 1px solid #333; padding-bottom: 5px;">Neural Architecture (Skill Dominance)</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Neural Architecture (0-100)</label>
+                    <input type="range" name="skill_neural" min="0" max="100" value="50" oninput="this.nextElementSibling.value = this.value">
+                    <output>50</output>
+                </div>
+                <div class="form-group">
+                    <label>Systems Thinking (0-100)</label>
+                    <input type="range" name="skill_systems" min="0" max="100" value="50" oninput="this.nextElementSibling.value = this.value">
+                    <output>50</output>
+                </div>
+                <div class="form-group">
+                    <label>AI Integration (0-100)</label>
+                    <input type="range" name="skill_ai" min="0" max="100" value="50" oninput="this.nextElementSibling.value = this.value">
+                    <output>50</output>
+                </div>
+                <div class="form-group">
+                    <label>Strategic Forecasting (0-100)</label>
+                    <input type="range" name="skill_strat" min="0" max="100" value="50" oninput="this.nextElementSibling.value = this.value">
+                    <output>50</output>
+                </div>
+            </div>
+
+            <!-- Core Drivers (Interests) -->
+            <div class="form-group">
+                <label for="interests">Core Drivers (Interests) <span style="font-size: 0.8em; color: #666;">(Comma separated)</span></label>
+                <input type="text" id="interests" name="interests" placeholder="e.g. Quantum Computing, Ethical AI, Bio-hacking">
+            </div>
+
+            <!-- Target Vectors (Goals) -->
+            <div class="form-group">
+                <label for="goals">Target Vectors (Goals) <span style="font-size: 0.8em; color: #666;">(Comma separated)</span></label>
+                <input type="text" id="goals" name="goals" placeholder="e.g. CTO by 2030, Launch Startup">
+            </div>
+
+            <!-- Current State (Biometrics) -->
+            <h3 style="margin-top: 30px; border-bottom: 1px solid #333; padding-bottom: 5px;">Current Biometric State</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Stress Level (Low - High)</label>
+                    <input type="range" name="bio_stress" min="0" max="100" value="30" class="slider-stress" oninput="this.nextElementSibling.value = this.value">
+                    <output>30</output>
+                </div>
+                <div class="form-group">
+                    <label>Energy Level (Low - High)</label>
+                    <input type="range" name="bio_energy" min="0" max="100" value="80" class="slider-energy" oninput="this.nextElementSibling.value = this.value">
+                    <output>80</output>
+                </div>
+                <div class="form-group">
+                    <label>Focus Metric (Low - High)</label>
+                    <input type="range" name="bio_focus" min="0" max="100" value="75" class="slider-focus" oninput="this.nextElementSibling.value = this.value">
+                    <output>75</output>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px; text-align: center;">
+                <button type="submit" class="btn-primary">INITIATE SYNCHRONIZATION</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human OS v2.0.27 - Control Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Human OS v2.0.27</h1>
+        <div class="subtitle">Neural Synchronization Active | System Status: Optimal</div>
+        <a href="/reset" class="btn-reset">RECALIBRATE SYSTEM</a>
+    </div>
+
+    <!-- 1. Digital Twin Profile -->
+    <div class="card">
+        <h2>1. Digital Twin Profile</h2>
+        <div style="margin-bottom: 15px;">
+            <div class="metric-row">
+                <span>Identity ID:</span>
+                <span style="color: var(--accent-primary)">{{ twin.identity_id }}</span>
+            </div>
+        </div>
+        
+        <h3>Skill Matrix</h3>
+        {% for skill, level in twin.neural_architecture.items() %}
+        <div class="skill-bar">
+            <div class="skill-name">
+                <span>{{ skill }}</span>
+                <span>{{ (level * 100)|int }}%</span>
+            </div>
+            <div class="progress">
+                <div class="progress-fill" style="width: {{ level * 100 }}%"></div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <h3>Core Drivers</h3>
+        <div>
+            {% for interest in twin.core_drivers %}
+            <span class="tag">{{ interest }}</span>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- 2. AI Insight Engine -->
+    <div class="card">
+        <h2>2. AI Insight Engine</h2>
+        {% for item in suggestions %}
+        <div class="suggestion-item">
+            <span class="suggestion-text">{{ item.suggestion }}</span>
+            <span class="reasoning">{{ item.reasoning }}</span>
+        </div>
+        {% endfor %}
+        
+        {% if not suggestions %}
+        <div style="color: var(--text-secondary); font-style: italic;">No active insights. Neural architecture aligned.</div>
+        {% endif %}
+    </div>
+
+    <!-- 3. Future Prediction Engine -->
+    <div class="card">
+        <h2>3. Horizon Forecasting</h2>
+        {% for forecast in forecasts %}
+        <div class="skill-bar">
+            <div class="skill-name">
+                <span>{{ forecast.path }}</span>
+                <span>{{ (forecast.probability * 100)|int }}%</span>
+            </div>
+            <div class="progress">
+                <div class="progress-fill" style="width: {{ forecast.probability * 100 }}%; background-color: var(--accent-secondary)"></div>
+            </div>
+            <div class="metric-row">
+                <span>Timeframe: {{ forecast.timeframe }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- 4. Early Warning System (Biometrics) -->
+    <div class="card">
+        <h2>4. Biometric Status</h2>
+        <div class="bio-grid">
+            <div class="bio-item">
+                <h3>Stress</h3>
+                <div class="bio-val">{{ twin.current_state.stress_level }}</div>
+            </div>
+            <div class="bio-item">
+                <h3>Energy</h3>
+                <div class="bio-val">{{ twin.current_state.energy_level }}</div>
+            </div>
+            <div class="bio-item">
+                <h3>Focus</h3>
+                <div class="bio-val">{{ twin.current_state.focus_metric }}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Decision Simulator -->
+    <div class="card full-width">
+        <h2>5. Decision Simulator & Neural Core</h2>
+        <p style="color: var(--text-secondary)">Simulating: {{ simulation.path_a.path }} vs {{ simulation.path_b.path }}</p>
+        
+        <div class="simulation-box">
+            <div class="path-box {% if simulation.recommendation == simulation.path_a.path %}winner{% endif %}">
+                <h3>Path A: {{ simulation.path_a.path }}</h3>
+                <div class="metric-row">
+                    <span>Success Prob:</span> <span class="metric-val">{{ (simulation.path_a.success_probability * 100)|int }}%</span>
+                </div>
+                <div class="metric-row">
+                    <span>Growth:</span> <span class="metric-val">{{ simulation.path_a.projected_growth }}</span>
+                </div>
+                <div class="metric-row">
+                    <span>Intrinsic Motivation:</span> <span class="metric-val">{{ simulation.path_a.intrinsic_motivation_index }}</span>
+                </div>
+            </div>
+
+            <div class="path-box {% if simulation.recommendation == simulation.path_b.path %}winner{% endif %}">
+                <h3>Path B: {{ simulation.path_b.path }}</h3>
+                <div class="metric-row">
+                    <span>Success Prob:</span> <span class="metric-val">{{ (simulation.path_b.success_probability * 100)|int }}%</span>
+                </div>
+                <div class="metric-row">
+                    <span>Growth:</span> <span class="metric-val">{{ simulation.path_b.projected_growth }}</span>
+                </div>
+                <div class="metric-row">
+                    <span>Intrinsic Motivation:</span> <span class="metric-val">{{ simulation.path_b.intrinsic_motivation_index }}</span>
+                </div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 15px; padding: 10px; background-color: rgba(0, 255, 204, 0.05); border-radius: 4px;">
+            <strong style="color: var(--accent-primary)">AI Recommendation:</strong> {{ simulation.reasoning }}
+        </div>
+    </div>
+
+    <!-- 6. Neural Interface (Chat) -->
+    <div class="card chat-card">
+        <h2>6. Neural Interface Link</h2>
+        <div class="chat-window" id="chat-window">
+            {% for log in twin.interaction_log %}
+            <div class="message user-msg">{{ log.user }}</div>
+            <div class="message system-msg">{{ log.system }}</div>
+            {% endfor %}
+            {% if not twin.interaction_log %}
+            <div class="system-msg" style="color: #666; font-style: italic;">Connection established. Neural link active.</div>
+            {% endif %}
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Communicate with Digital Twin..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()" class="btn-send">SEND</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    async function sendMessage() {
+        const input = document.getElementById('chat-input');
+        const message = input.value.trim();
+        if (!message) return;
+
+        // Add user message to UI immediately
+        const chatWindow = document.getElementById('chat-window');
+        const userDiv = document.createElement('div');
+        userDiv.className = 'message user-msg';
+        userDiv.innerText = message;
+        chatWindow.appendChild(userDiv);
+        
+        input.value = '';
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+
+        try {
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({message: message})
+            });
+            const data = await response.json();
+            
+            // Add system response
+            const sysDiv = document.createElement('div');
+            sysDiv.className = 'message system-msg';
+            sysDiv.innerText = data.response;
+            chatWindow.appendChild(sysDiv);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+            
+        } catch (error) {
+            console.error('Neural Link Error:', error);
+        }
+    }
+
+    function handleKeyPress(e) {
+        if (e.key === 'Enter') sendMessage();
+    }
+</script>
+
+</body>
+</html>
